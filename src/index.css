@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #FFF9EC;
+    color: #344437;
+  }
+}
+
+/* Custom design tokens for Gridshield Organic Tactility */
+:root {
+  --color-warm-cream: #FFF9EC;
+  --color-matcha-green: #879B68;
+  --color-matcha-cream: #F0F3DF;
+  --color-pistachio: #D9E5C3;
+  --color-butter-yellow: #F5D875;
+  --color-deep-forest: #344437;
+  --color-water-blue: #668DA0;
+  --color-coral: #F07868;
+}
+
+/* Custom scrollbar styling to feel organic */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FFF9EC;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9E5C3;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #879B68;
+}

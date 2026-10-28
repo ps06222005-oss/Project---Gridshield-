@@ -1,0 +1,6 @@
+{
+  "name": "GRIDSHIELD AI",
+  "description": "Small actions, greener future. Build simple daily habits to protect our planet and earn green achievements.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

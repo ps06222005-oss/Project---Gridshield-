@@ -1,0 +1,238 @@
+---
+name: Gridshield Organic Tactility
+colors:
+  surface: '#ecfeec'
+  surface-dim: '#ccdfcd'
+  surface-bright: '#ecfeec'
+  surface-container-lowest: '#ffffff'
+  surface-container-low: '#e6f9e6'
+  surface-container: '#e0f3e0'
+  surface-container-high: '#daeddb'
+  surface-container-highest: '#d5e7d5'
+  on-surface: '#101f14'
+  on-surface-variant: '#45483e'
+  inverse-surface: '#243428'
+  inverse-on-surface: '#e3f6e3'
+  outline: '#75786c'
+  outline-variant: '#c5c8ba'
+  surface-tint: '#526437'
+  primary: '#526437'
+  on-primary: '#ffffff'
+  primary-container: '#879b68'
+  on-primary-container: '#223209'
+  inverse-primary: '#b9ce97'
+  secondary: '#576247'
+  on-secondary: '#ffffff'
+  secondary-container: '#d8e4c2'
+  on-secondary-container: '#5b664b'
+  tertiary: '#715c00'
+  on-tertiary: '#ffffff'
+  tertiary-container: '#c3a94c'
+  on-tertiary-container: '#4d3e00'
+  error: '#ba1a1a'
+  on-error: '#ffffff'
+  error-container: '#ffdad6'
+  on-error-container: '#93000a'
+  primary-fixed: '#d5eab1'
+  primary-fixed-dim: '#b9ce97'
+  on-primary-fixed: '#111f00'
+  on-primary-fixed-variant: '#3b4c21'
+  secondary-fixed: '#dbe7c5'
+  secondary-fixed-dim: '#bfcbaa'
+  on-secondary-fixed: '#151e09'
+  on-secondary-fixed-variant: '#404a31'
+  tertiary-fixed: '#fee17d'
+  tertiary-fixed-dim: '#e1c564'
+  on-tertiary-fixed: '#231b00'
+  on-tertiary-fixed-variant: '#554500'
+  background: '#ecfeec'
+  on-background: '#101f14'
+  surface-variant: '#d5e7d5'
+typography:
+  headline-xl:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 2.5rem
+    fontWeight: '800'
+    lineHeight: 3rem
+    letterSpacing: -0.03em
+  headline-xl-mobile:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 2rem
+    fontWeight: '800'
+    lineHeight: 2.375rem
+    letterSpacing: -0.025em
+  headline-lg:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 1.75rem
+    fontWeight: '700'
+    lineHeight: 2.25rem
+    letterSpacing: -0.02em
+  headline-lg-mobile:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 1.5rem
+    fontWeight: '700'
+    lineHeight: 1.875rem
+    letterSpacing: -0.015em
+  headline-md:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 1.25rem
+    fontWeight: '700'
+    lineHeight: 1.625rem
+    letterSpacing: -0.01em
+  body-lg:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 1.125rem
+    fontWeight: '400'
+    lineHeight: 1.75rem
+  body-md:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 1rem
+    fontWeight: '400'
+    lineHeight: 1.5rem
+  body-sm:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 0.875rem
+    fontWeight: '400'
+    lineHeight: 1.25rem
+  label-lg:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 1rem
+    fontWeight: '600'
+    lineHeight: 1.25rem
+    letterSpacing: 0.01em
+  label-md:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 0.875rem
+    fontWeight: '600'
+    lineHeight: 1.125rem
+    letterSpacing: 0.01em
+  label-sm:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 0.75rem
+    fontWeight: '700'
+    lineHeight: 1rem
+    letterSpacing: 0.02em
+  data-metric:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 2.25rem
+    fontWeight: '800'
+    lineHeight: 2.5rem
+    letterSpacing: -0.03em
+rounded:
+  sm: 0.25rem
+  DEFAULT: 0.5rem
+  md: 0.75rem
+  lg: 1rem
+  xl: 1.5rem
+  full: 9999px
+spacing:
+  gutter: 1rem
+  gutter-desktop: 1.5rem
+  margin: 1.25rem
+  margin-desktop: 2.5rem
+  space-xs: 0.25rem
+  space-sm: 0.5rem
+  space-md: 1rem
+  space-lg: 1.5rem
+  space-xl: 2rem
+---
+
+## Brand & Style
+
+This design system expresses mindful eco-stewardship through a gentle, humanistic, and optimistic lens. It avoids the cold, dystopian austerity of industrial sustainability tools and the overly childish pastels of casual gaming. Instead, it pairs modern clean aesthetics with soft, nature-inspired tactilityâ€”balancing serene clarity with rewarding gamified feedback loops.
+
+The interface targets environmentally conscious individuals, sustainability circles, and teams building lasting, resource-conserving habits. Every interaction is engineered to evoke grounded calm, accomplishment, and organic warmth rather than carbon-guilt or urgency fatigue.
+
+Key stylistic pillars:
+- **Warm & Organic Foundation:** High-key, creamy canvas foundations replace harsh pure whites and stark terminal blacks with warm sunlight tones and deep forest timber tones.
+- **Friendly Modernism:** Crisp layouts, generous negative space, gentle pill elements, and accessible, welcoming typography.
+- **Progressive Disclosure:** Gamification features (points, streaks, impact trees, micro-metrics) are layered thoughtfully to keep task completion calm and distraction-free.
+- **Playful Flat Detailing:** Lightweight 2D vector badges, botanical stickers, and crisp micro-accents celebrate small eco-wins without visual clutter.
+
+## Colors
+
+The palette draws directly from botanical and earth elements, structured to ensure WCAG 2.1 AA accessibility throughout both informational and gamified components:
+
+- **Primary (`#879B68` â€” Matcha Green):** The core interactive color for primary action buttons, active states, progress completions, and pivotal milestones. On `#879B68`, use `#FFFFFF` or `#FFF9EC` for high-contrast text.
+- **Secondary (`#D9E5C3` â€” Pistachio):** Used for soft secondary action states, active pill chips, streak day track backgrounds, and filled badges.
+- **Tertiary / Energy Accent (`#F5D875` â€” Butter Yellow):** Used for rewards, streaks, celebratory sparks, badges, and high-visibility gamification callouts.
+- **Secondary Accent (`#668DA0` â€” Water Blue):** Assigned to resource-tracking flows, water-conservation milestones, telemetry data, and alternative data tags.
+- **Neutral Core (`#344437` â€” Deep Forest):** Replaces pure black. Serves as high-contrast primary typography and icon stroke color, achieving ÎŒHÛÛ˜\İÛˆYÚ˜XÚÙÜ›İ[™Ë‚‹H
+Š”İ\™˜XÙHØ[˜\È
+Ñ‘‘QPØ8 %Ø\›HÜ™X[JNŠŠˆY˜][ÛØ˜[˜XÚÙÜ›İ[™Ø[˜\ÈÚ]š[™ÈH]›Ü›H]ÈÙ\™[™H\\‹[ZÙHÛ™K‚‹H
+Š”İ\™˜XÙHØ\™ÈÛÛZ[™\ˆ
+Ñ‘‘‘‘‘˜8 %\™HÚ]JNŠŠˆÛX[ˆ[]˜]Yİ\™˜XÙH›ÜˆØ\™Ë›Ø][™ÈÚY]Ë[™[Ù[Ë‚‹H
+Š”İ\™˜XÙHYÚYÚ
+ÑŒŒÑ˜8 %X]ÚHÜ™X[JNŠŠˆİXH]]YÛÛZ[™\ˆš[›Üˆ[œÙ]Ü›İ\ËÙX\˜ÚšY[ËÙXÛÛ™\H\İË[™[˜Xİ]™H›ÙÜ™\ÜÈ˜\œË‚‚ˆÈÈ\ÙÜ˜\B‚•H\HŞ\İ[H\ÈİÙ\™YH
+Š”\È˜ZØ\HØ[œÊŠ‹œš[™Ú[™ÈÛX[ˆÙ[ÛY]šXÈ™XÚ\Ú[ÛˆZ^YÚ]ÛÙ\›Z[˜[İ\™\È]™Y[ÜÜ]X›H[™ÛÛ[\Ü˜\K‚‚‹H
+Š“[Y\šXÜÈ	ˆØÛÜ™HY]šXÈ\Ü^\ÎŠŠˆY]šXÜË[\XİšYİ\™\È
+K™Ë‹‹ÙÈÓÌˆØ]™Y
+K[™İ™XZÈ˜XÚÙ\œÈ][^™H]K[Y]šXØÚ]YÚ]\ˆÜXÚ[™È›ÜˆYÚš\İX[™]Ø\™‚‹H
+Š’XY[™\ÎŠŠˆÙ][ˆ›Û[™^˜KX›Ûİ]ÈÚ]İXH™YØ]]™H˜XÚÚ[™ÈÈ™\Ù\™HİXİ\˜[]]Üš]HÚ]İ]™XÛÛZ[™È\œÚ‚‹H
+Š›ÙH	ˆØ\[ÛœÎŠŠˆ[\H[™HZYÚÈ™\Ù\™H™XYXš[]HYØZ[œİHÜ™X[^HÙ™‹]Ú]HØ[˜\Ë‚‹H
+ŠØ\ÙH[\ÎŠŠˆ[X™[È[™˜]šYØ][Ûˆ][\È\™HÙ][ˆÙ[[˜ÙHØ\ÙHÈİ\İZ[ˆ[ˆÜ[‹\›ØXÚX›H›ÙXİ\œÛÛ˜K‚‚ˆÈÈ^[İ]	ˆÜXÚ[™Â‚•H\ÚYÛˆŞ\İ[Hš[Üš]^™\ÈH
+Š›[Øš[KYš\œİØ[˜\ÈØ[Xœ˜]Y\›İ[™HÎLšY]ÜÜ
+Š‹Y\[™ÈÜ˜XÙY[HÈX›][™\ÚİÜšY]ÜÜË‚‚‹H
+Š“[Øš[H
+ÌŒ8 $ÈÍÜ
+NŠŠˆÚ[™ÛKXÛÛ[[ˆ›ZY^[İ]Ú][ˆİ]\ˆØ[˜\ÈX\™Ú[ˆÙˆKŒ\™[X
+Œ
+K[œİ\š[™ÈİXÚ\™Ù]È[™Ø\™ÈX^[Z^™HØY™HØÜ™Y[ˆ\™X\ÈÚ]İ]YÙHÜ›İÙ[™Ë‚‹H
+Š•X›]
+Í8 $ÈLŒÜ
+NŠŠˆXÛÛ[[ˆ^[İ]Ú]X\™Ú[œÈ[™Mœİ]\œËÜ›İ\[™È]HY]šXÜÈ[ÈX[XØ\™›İÜË‚‹H
+Š‘\ÚİÜ
+L
+ÊNŠŠˆX^^[İ]ÛÛZ[™\ˆØ\Y]LLŒœ˜[YYÚ]HÙ[\™YL‹XÛÛ[[ˆÜšYÈXZ[Z[ˆ™XYX›H[™H[™İÈ[™ÛÛ›ÛY\Ú›Ø\™ÚYÙ]Ë‚‹H
+Š•™\XØ[ÜXÚ[™Èš]NŠŠˆİšXİHYYÈ][\\ÈÙˆÎÚ\™HXİ[Û˜X›H][\È™X]\™H]X\İİXÚ\™Ù]È›ÜˆY™›Ü\ÜÈ[Xˆ[\˜Xİ[ÛˆÛˆ[™[]šXÙ\Ë‚‚ˆÈÈ[]˜][Ûˆ	ˆ\‚•š\İX[Y\˜\˜ÚH™[Y\ÈÛˆÛ˜[^Y\š[™È]YÛY[YHØ\›K[XšY[›ÜÚYİÜÈ˜]\ˆ[ˆİ\šËX]H›Ü\ÚYİÜÈÜˆœ][İ][™\Ë‚‚‹H
+Š•Û˜[˜\ÙNŠŠˆÑ‘‘QPØÙ\™\È\ÈH˜\ÙH\œ˜Z[‹ˆ[œÙ]ÛÛ›ÛÈ[™\ØX›Yİ]\ÈØØİ\HÑŒŒÑ˜ˆ[\˜Xİ]™HØ\™Ë[Ù[Ë[™ÚY]Èš\ÙH\\Ú[™È\™HÑ‘‘‘‘‘˜‚‹H
+ŠØ\™ÚYİÜÈ
+[XšY[Ø\›]
+NŠŠˆÚYİÜÈ\™H[YÚ]H›Ü™\İ][Y™]]˜[
+ÌÍÍØ
+H˜]\ˆ[ˆ™]]˜[›XÚÈÈXZ[Z[ˆ[ˆÜ™Ø[šXËØ\›H^[YÚ™Y[‚ˆH
+”™\İ[™ÈØ\™ÎŠˆMœLœ™Ø˜JL‹MKŒŠK\Ü™Ø˜JL‹MKŒÊXˆH
+‘›Ø][™È[Ù[ÈÈ›İÛHÚY]ÎŠˆLœÌœM™Ø˜JL‹MKŒLŠKL\™Ø˜JL‹MKŒ
+X‹H
+Š”İXH›İ[™\šY\ÎŠŠˆÚ[ˆØ\™È™\İYØZ[œİ™X\‹ZY[XØ[İ\™˜XÙ\ËİË[ÜXÚ]HÚÜİ›Ü™\œÈ
+\ÛÛY™Ø˜JLÍKMMKLŒN
+X
+H›İšYH›İ[™\HYš[š][ÛˆÚ]İ]Y[™Èš\İX[›Ú\ÙK‚‚ˆÈÈÚ\\Â‚•H\ÚYÛˆŞ\İ[H[˜ÛÜœÜ˜]\ÈÛÙXİ[Hİ\™\È]™Y›XİÜ™Ø[šXÈ›Ü›\ÈZÙHX˜›\È[™X]™\Ë‚‚‹H
+Š”ÛX[[\˜Xİ]™H[[Y[È
+Ú\Ë]ÛœË˜YÙ\ÊNŠŠˆØİ[YÚ][[Ù[ÛY]šY\È
+NNN\
+HÈ[\\Ú^™H\XØÙ\ÜÚXš[]H[™^Y[Xİ[]K‚‹H
+ŠØ\™ËÚY]È	ˆ[™[ÎŠŠˆ›ÛİÈ]™[ˆİ\˜]\™H
+İ[™\™ÛÛZ[™\œÈ\ÙH\™[XÈMœ˜Y]\ËÚ[H\™Ù\ˆ[\˜Xİ]™H™X]\™HØ\™È]™\˜YÙHK\™[XÈ
+K‚‹H
+Š‘[X™YYš\İX[È	ˆİXÚÙ\œÎŠŠˆœ˜[YY[ˆÚ\˜İ[\ˆ]˜]\œÈÜˆÛ[ÛİY›İ[™Y[˜ÛÜİ\™\È
+›İ[™Y[Ø›İYÚ›İ[™Y^
+K‚‚ˆÈÈÛÛ\Û™[Â‚ˆÈÈÈ]ÛœÂ‹H
+Š”š[X\NŠŠˆ[[›Ü™\ˆ˜Y]\È
+NNN\
+KX]ÚHÜ™Y[ˆ
+ÎÎP
+H˜XÚÙÜ›İ[™\™HÚ]H
+Ñ‘‘‘‘‘˜
+HÜˆØ\›HÜ™X[H^›Û\ÙÜ˜\KˆXİ]™HİXÚİ]HİÙ\œÈœšYÚ™\ÜÈÈÍÍÍMØ[™ØØ[\ÈİÛˆÛYÚH
+NØØ[JKˆZ[š[][HİXÚZYÚ\ÈLœ›Üˆ[Øš[Hš[X\šY\Ë‚‹H
+Š”ÙXÛÛ™\NŠŠˆX]ÚHÜ™X[H
+ÑŒŒÑ˜
+H˜XÚÙÜ›İ[™Ú]Y\›Ü™\İ
+ÌÍÍØ
+H^[™ÚÜİ›Ü™\ˆ
+™Ø˜JLÍKMMKLŒÊX
+K‚‹H
+Š•\X\HÈØ[ZYšYYXİ[ÛŠŠˆ]\ˆY[İÈ
+ÑQÍX
+H˜XÚÙÜ›İ[™Ú]Y\›Ü™\İ
+ÌÍÍØ
+H^›ÜˆÛZ[XX›H™]Ø\™Ë›ÛÜİ\œË[™ÛÛ\]Yİ™XZÈÛZ[\Ë‚‚ˆÈÈÈØ\™È	ˆXš]˜XÚÙ\œÂ‹Hİ\™˜XÙH\ÈÑ‘‘‘‘‘˜Ú]™\İ[™È[XšY[Ø\›HÚYİÈ[™HMœÜˆŒ˜Y]\Ë‚‹H[œÙ]Ø\™È™X]\™H[ˆXÛË\İ™XZÈ›İÈ\Ü^Z[™ÈÛÛœÙXİ]]™H^H[™XØ]ÜœÎˆÛÛ\]Y^\Èš[Y[ˆ\İXÚ[È
+ÑQMPÌØ
+HÚ]HX]ÚHÜ™Y[ˆXYˆÚXÚÛX\šË]\™H^\È[ˆYÚİYİ][™\Ë‚‹H›ÙÜ™\ÜÈ˜\œÈ][^™HHÑŒŒÑ˜˜XÚÈÚ]Û[Ûİ[š[X]Yš[È[ˆX]ÚHÜ™Y[ˆÜˆØ]\ˆ›YK‚‚ˆÈÈÈÚ\È	ˆš[\ˆ[Â‹HZYÚÈÙ]]ÍœÚ]›İ[™Y[Ú[İY]K‚‹HÙ[XİYİ]H\Ù\È\İXÚ[È
+ÑQMPÌØ
+H˜XÚÙÜ›İ[™Ú]ÌÍÍØ^[™›ÛÙZYÚ[™ÎÈ[œÙ[XİYİ]H\Ù\ÈØ\›HÜ™X[H
+Ñ‘‘QPØ
+HÜˆ\™HÚ]HÚ]H\ÛÙ›Ü™\‹‚‚ˆÈÈÈÚXÚØ›Ş\È	ˆXš]ÛÛ\][Ûˆ˜Y[ÜÂ‹HXš]ÛÛ\][Ûˆ\™Ù]È\™Hİ™\œÚ^™Y›İ[™ÙÙÛHš[™ÜÈ
+ÌœX[Y]\ŠK‚‹H[˜ÚXÚÙYˆœ›Ü™\ˆ[ˆÎÎPÚ]˜[œÜ\™[š[‚‹HÚXÚÙYˆ[š[X]Yš[[ÈÎÎP™]™X[[™ÈHÚ]HÚXÚÈXÛÛˆÚ]HÙ[HÜš[™ÈÙ[Xœ˜][Ûˆ›İ[˜ÙK‚‚ˆÈÈÈ›Ü›H[œ]Â‹HLœ[[œ]šY[ÈÚ]HMœÛÜ›™\ˆ˜Y]\Ë‚‹H˜XÚÙÜ›İ[™\Ù\ÈÑ‘‘‘‘‘˜ÛˆØ\›HÜ™X[HØ[˜\Ëœ˜[YYÚ]HK\›Ü™\ˆÙˆÑŒŒÑ˜‚‹H›Øİ\Èİ]HXİ]˜]\È[ˆİ][™H›Ü™\ˆ[ˆÎÎPÚ]HÛÙÜš[™È[™Ø˜JLÍKMMKLŒJXˆ^Ú]È[ˆY\›Ü™\İÌÍÍØ‚‚ˆÈÈÈØ[ZYšXØ][Ûˆ˜YÙ\È	ˆİXÚÙ\œÂ‹H›]‘™XİÜˆ[\İ˜][ÛœÈÚ]ÛX[ˆY\›Ü™\İ[™\È
+K\İ›ÚÙJHš[YÚ]Ø]\ˆ›YK]\ˆY[İË[™X]ÚHÜ™Y[‹‚‹H[›ØÚÙY˜YÙ\È™\İ[ˆÚ\˜İ[\ˆÜˆÜ]Z\˜ÛHÛÛZ[™\œÈÚ]]\ˆY[İÈÜ\šÛHXØÙ[Ë
