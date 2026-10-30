@@ -1,6 +1,17 @@
 /**
  * server.ts — Entry point. Connects to DB, initializes Firebase, starts the HTTP server.
  */
+import dotenv from 'dotenv';
+import path from 'path';
+import fs from 'fs';
+
+// Deterministically load backend/.env before importing any modules that read process.env
+const backendDir = path.resolve(__dirname, '..');
+const envPath = path.resolve(backendDir, '.env');
+if (fs.existsSync(envPath)) {
+  dotenv.config({ path: envPath, override: true });
+}
+
 import { ENV } from './config/env';
 import { connectDB } from './config/db';
 import { initFirebase } from './config/firebase';

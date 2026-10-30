@@ -4,21 +4,41 @@
  */
 import { config } from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 
-// Load .env from the backend root directory
-config({ path: path.resolve(__dirname, '../../.env') });
+// Deterministic backend-relative path: C:\Hackathon\backend\.env
+const backendDir = path.resolve(__dirname, '../..');
+const envPath = path.resolve(backendDir, '.env');
 
-function requireEnv(key: string): string {
-  const value = process.env[key];
-  if (!value) {
+// When running under Vitest, preserve test mode so rate limiters and test configs are honored
+const isTestRunner = process.env.NODE_ENV === 'test' || Boolean(process.env.VITEST);
+
+if (fs.existsSync(envPath)) {
+  config({ path: envPath, override: !isTestRunner });
+} else {
+  // Fallback to default dotenv resolution
+  config({ override: !isTestRunner });
+}
+
+if (isTestRunner) {
+  process.env.NODE_ENV = 'test';
+}
+
+export function requireEnv(key: string, customEnv: Record<string, string | undefined> = process.env): string {
+  const value = customEnv[key];
+  if (!value || value.trim().length === 0) {
+    if (process.env.NODE_ENV === 'test' || process.env.VITEST || customEnv !== process.env) {
+      throw new Error(`Missing required environment variable: ${key}`);
+    }
     console.error(`[config] FATAL: Missing required environment variable: ${key}`);
     process.exit(1);
   }
   return value;
 }
 
-function optionalEnv(key: string, defaultValue: string = ''): string {
-  return process.env[key] ?? defaultValue;
+export function optionalEnv(key: string, defaultValue: string = '', customEnv: Record<string, string | undefined> = process.env): string {
+  const value = customEnv[key];
+  return value !== undefined && value.trim().length > 0 ? value : defaultValue;
 }
 
 export const ENV = {
