@@ -2,7 +2,17 @@
  * runSeed.ts — Master seed runner. Safe to run multiple times (upserts only).
  * Usage: npm run seed
  */
-import 'dotenv/config';
+import dotenv from 'dotenv';
+import path from 'path';
+import fs from 'fs';
+
+// Deterministically load backend/.env
+const backendDir = path.resolve(__dirname, '../..');
+const envPath = path.resolve(backendDir, '.env');
+if (fs.existsSync(envPath)) {
+  dotenv.config({ path: envPath, override: true });
+}
+
 import { connectDB, disconnectDB } from '../config/db';
 import { seedTasks } from './tasks.seed';
 import { seedBadges } from './badges.seed';

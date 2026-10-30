@@ -19,18 +19,22 @@
 | **Theme / Track** | **Green Energy & Sustainability** |
 | **Software Category** | **Full-Stack Web & Mobile-First Progressive Web Architecture** |
 | **Current Readiness Status** | **🟢 READY FOR DEMO** *(Production Deployment Pending)* |
+| **Author / Lead Developer** | **Prince Chauhan ([@ps06222005-oss](https://github.com/ps06222005-oss))** |
+| **License** | **MIT License ([LICENSE](LICENSE))** |
 
 ---
 
 ## 2. Project Links
 
 > [!IMPORTANT]
-> The following fields provide submission links. Deployment and video recording will be completed prior to the final submission deadline:
+> The following fields provide submission links. Live deployment and demo video recording are staged for the final submission window:
 
-- **Live Application:** `PENDING DEPLOYMENT — LINK WILL BE ADDED`
 - **GitHub Repository:** [https://github.com/ps06222005-oss/Project---Gridshield-](https://github.com/ps06222005-oss/Project---Gridshield-)
+- **Live Application:** `PENDING DEPLOYMENT — LINK WILL BE ADDED`
 - **Demo Video:** `PENDING RECORDING — LINK WILL BE ADDED`
 - **Pitch Deck PDF:** `PENDING — LINK WILL BE ADDED`
+- **Local Health Endpoint:** `http://localhost:4000/api/v1/health`
+- **Local OpenAPI 3.0 Documentation:** `http://localhost:4000/api/v1/docs`
 
 ---
 
@@ -85,6 +89,8 @@ To maintain complete transparency for hackathon evaluators, all platform feature
 | **Community Leaderboard** | Community | **Implemented** | `backend/src/services/leaderboardService.ts`, filters real registered users. |
 | **Account Deletion Cascade** | Privacy | **Implemented** | `backend/src/controllers/meController.ts`, cascades across 7 collections. |
 | **Resilient DNS Fallback** | Infrastructure | **Implemented** | `backend/src/config/db.ts`, auto-resolves loopback DNS issues on Windows. |
+| **Deterministic Env Loading** | Infrastructure | **Implemented** | `backend/src/config/env.ts`, backend-relative path resolution with override control. |
+| **Safe URI Diagnostics** | Security | **Implemented** | `backend/src/config/db.ts`, structural validation with strict credential redaction. |
 | **Notification Settings Toggle** | Settings | **Partially Implemented** | UI toggle persists to `UserSettings`; backend push worker is planned. |
 | **Weekly Leaderboard Historical Archives** | Community | **Partially Implemented** | Live leaderboard ranks all-time points; weekly snapshots require cron worker. |
 | **AI-Powered Photo Habit Verification** | Verification | **Planned** | Computer vision verification using Gemini Vision models. |
@@ -127,7 +133,7 @@ The following verified screenshots were captured directly during automated Playw
 
 ### Frontend Client
 - **Framework**: React 19.0.1 (`react`, `react-dom`)
-- **Build Tool**: Vite 8.3.0 with `@tailwindcss/vite` 4.3.3
+- **Build Tool**: Vite 8.3.5 with `@tailwindcss/vite` 4.3.3
 - **Language**: TypeScript 7.0.2 / 5.7
 - **Styling**: Tailwind CSS 4 with custom warm cream (`#FFF9EC`) and matcha green (`#879B68`, `#556E40`) theme
 - **Icons**: Lucide React 0.546.0
@@ -145,7 +151,7 @@ The following verified screenshots were captured directly during automated Playw
 - **OpenAPI Specification**: OpenAPI 3.0.3 (`backend/openapi.json` served at `/api/v1/docs`)
 
 ### Quality Assurance & Automated Testing
-- **Unit & Integration Testing**: Vitest 2.1.8 with Supertest 7.0.0
+- **Unit & Integration Testing**: Vitest 2.1.9 with Supertest 7.0.0
 - **Browser Automation**: Playwright 1.64.1 (Chromium mobile & desktop viewports)
 - **Performance & Accessibility Auditing**: Google Lighthouse 13.6.0
 
@@ -209,7 +215,7 @@ flowchart TD
 
 ---
 
-## 9. Database Schema
+## 9. Database Architecture & Schemas
 
 GRIDSHIELD AI implements 11 normalized Mongoose schemas in MongoDB Atlas, linking user activity through their unique `firebaseUid`:
 
@@ -333,11 +339,11 @@ All API endpoints are prefixed with `/api/v1`. The complete OpenAPI 3.0 specific
 | :--- | :--- | :---: | :--- |
 | `GET` | `/health` | No | System health and MongoDB Atlas connectivity status. |
 | `GET` | `/docs` | No | Serves the OpenAPI 3.0 specification JSON file. |
-| `GET` | `/tasks` | No | Returns the public catalog of available eco-tasks. |
+| `GET` | `/tasks` | No | Returns the public catalog of available eco-tasks (8 seeded tasks). |
 | `POST` | `/tasks/:taskId/complete` | **Yes (Bearer JWT)** | Validates daily recurrence, awards points, and updates impact stats. |
-| `GET` | `/rewards` | No | Lists redeemable environmental impact rewards. |
+| `GET` | `/rewards` | No | Lists redeemable environmental impact rewards (5 seeded rewards). |
 | `POST` | `/rewards/:rewardId/redeem` | **Yes (Bearer JWT)** | Deducts points atomically and mints a unique voucher code. |
-| `GET` | `/badges` | No | Returns achievement badges and unlock criteria. |
+| `GET` | `/badges` | No | Returns achievement badges and unlock criteria (8 seeded badges). |
 | `GET` | `/lessons` | No | Returns sustainability learning modules *(answers stripped)*. |
 | `GET` | `/lessons/:lessonId/quiz` | No | Returns lesson quiz questions *(answers stripped)*. |
 | `POST` | `/lessons/:lessonId/quiz/submit` | **Yes (Bearer JWT)** | Server-side quiz evaluation; awards bonus points on passing attempt. |
@@ -373,9 +379,7 @@ cd Project---Gridshield-
 npm install
 
 # 2. Install backend dependencies
-cd backend
-npm install
-cd ..
+npm install --prefix backend
 ```
 
 ### Step 3: Environment Configuration
@@ -389,7 +393,7 @@ VITE_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
 VITE_FIREBASE_PROJECT_ID=gridshield-ai
 VITE_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
 VITE_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
-VITE_FIREBASE_APP_ID=your-app-id
+VITE_FIREBASE_APP_ID=1:your-sender-id:web:your-app-id
 ```
 
 **Backend Environment (`backend/.env`):**
@@ -402,6 +406,11 @@ FIREBASE_PROJECT_ID=gridshield-ai
 RATE_LIMIT_WINDOW_MS=900000
 RATE_LIMIT_MAX=100
 ```
+
+> [!CAUTION]
+> **MongoDB Password Formatting**:
+> 1. Do **NOT** include the literal angle brackets `<` or `>`.
+> 2. If your password contains special characters, they must be URL-percent-encoded (e.g. `@` $\rightarrow$ `%40`, `#` $\rightarrow$ `%23`, `$` $\rightarrow$ `%24`, `%` $\rightarrow$ `%25`).
 
 > [!TIP]
 > **Windows DNS Resolution**: If Node.js defaults to `127.0.0.1` and fails MongoDB SRV lookups, the backend automatically resolves records via Cloudflare (`1.1.1.1`) and Google (`8.8.8.8`) DNS fallbacks.
@@ -437,28 +446,26 @@ The application underwent rigorous multi-layer testing before submission:
 ══════════════════════════════════════════════════════════════
                TEST SUITE EXECUTION SUMMARY
 ══════════════════════════════════════════════════════════════
-  Backend Automated Tests:   100 / 100 Passed (9 Test Suites)
+  Backend Automated Tests:   110 / 110 Passed (10 Test Suites)
   Frontend TypeScript Check: 0 Errors (tsc --noEmit)
   Backend TypeScript Build:  0 Errors (tsc into backend/dist)
-  Frontend Production Build: 1,691 modules bundled in 2.51s
+  Frontend Production Build: 1,691 modules bundled in 1.42s
   Live System Integration:   16 / 16 Checks Passed (100%)
   Playwright Browser Steps:  11 / 11 Steps Passed (14 Screens)
 ══════════════════════════════════════════════════════════════
 ```
 
-### Test Count Progression Clarification
-Earlier Phase 4 integration runs reported **41 passing tests** focused strictly on the HTTP router (`tasksAndRewards.test.ts` and `health.test.ts`). In Phase 5 and Phase 6, comprehensive unit test suites were added covering schemas, points transactions, DNS resolution, streaks, and quiz anti-cheat, expanding the automated regression suite to **100 tests across 9 suites**:
-
-- `src/tests/unit/schemas.test.ts` (15 tests)
-- `src/tests/unit/pointsService.test.ts` (8 tests)
-- `src/tests/unit/ecoLogic.test.ts` (7 tests)
-- `src/tests/unit/dns.test.ts` (6 tests)
-- `src/tests/unit/taskService.test.ts` (6 tests)
-- `src/tests/unit/streakAndQuiz.test.ts` (6 tests)
-- `src/tests/integration/liveHttpServer.test.ts` (6 tests)
-- `src/tests/integration/health.test.ts` (8 tests)
-- `src/tests/integration/tasksAndRewards.test.ts` (38 tests)
-- **Total:** **100 / 100 automated tests passed** in 6.81s.
+### Test Suite Breakdown (110 Tests across 10 Suites)
+- `src/tests/unit/schemas.test.ts` (15 tests) — Zod payload validation
+- `src/tests/unit/securityAndEnv.test.ts` (10 tests) — Env variable validators & URI redaction
+- `src/tests/unit/pointsService.test.ts` (8 tests) — Atomic points mutations
+- `src/tests/unit/ecoLogic.test.ts` (7 tests) — Mission LiFE impact multipliers
+- `src/tests/unit/dns.test.ts` (6 tests) — SRV fallback and loopback resolver detection
+- `src/tests/unit/taskService.test.ts` (6 tests) — Daily reset & recurrence limits
+- `src/tests/unit/streakAndQuiz.test.ts` (6 tests) — Streak preservation & anti-cheat quiz logic
+- `src/tests/integration/liveHttpServer.test.ts` (6 tests) — Real TCP socket listener & CORS headers
+- `src/tests/integration/health.test.ts` (8 tests) — System health & route security
+- `src/tests/integration/tasksAndRewards.test.ts` (38 tests) — Catalog filtering, auth guards, voucher minting
 
 ### Google Lighthouse Quality Audit (Production Bundle)
 - **Accessibility:** **100 / 100** (WCAG 2.1 AA compliant, color contrast $\ge 5.69:1$, accessible label-in-name compliance)
@@ -468,7 +475,7 @@ Earlier Phase 4 integration runs reported **41 passing tests** focused strictly 
 
 ---
 
-## 13. Security Considerations
+## 13. Security Implementation
 
 *(Passed tested security scenarios against common web attack vectors; does not represent a third-party penetration-test certification).*
 
@@ -478,6 +485,7 @@ Earlier Phase 4 integration runs reported **41 passing tests** focused strictly 
 4. **Anti-Cheat Quiz Delivery**: `correctAnswerIndex` is stripped from quiz objects before transmission to the browser. Grading is performed entirely on the server.
 5. **Security Headers & CORS**: Helmet applies strict HTTP security headers (`nosniff`, `hidePoweredBy()`). CORS validates incoming requests against an explicit frontend allowlist.
 6. **Credential Hygiene**: All environment files are excluded from Git via `.gitignore`. No hardcoded secrets exist in the repository.
+7. **Safe Startup Diagnostics**: Database connection diagnostics report cluster hostname and configuration status without ever exposing passwords or complete URIs.
 
 ---
 
@@ -529,11 +537,11 @@ Earlier Phase 4 integration runs reported **41 passing tests** focused strictly 
 ## 18. Project Status and License
 
 - **Project Status**: **🟢 READY FOR DEMO** *(Production Deployment Pending)*.
-  - Core backend REST API, database schemas, points ledger, and 100/100 automated tests passed.
+  - Core backend REST API, database schemas, points ledger, and 110/110 automated tests passed.
   - Full frontend UI across 14 screens/modals, guest isolation, and API integration verified.
   - Google Lighthouse scores of 100 Accessibility, 100 Best Practices, and 100 SEO verified on production bundle.
   - Production deployment (custom domain, TLS, CDN edge caching) documented as pending.
-- **License**: Not specified (Proprietary / All rights reserved until formally licensed).
+- **License**: **MIT License** — See the [LICENSE](LICENSE) file for complete terms.
 
 ---
 
