@@ -6,7 +6,7 @@ import { gradeQuiz } from '../utils/ecoLogic';
 interface LessonQuizModalProps {
   lesson: Lesson | null;
   onClose: () => void;
-  onCompleteQuiz: (lesson: Lesson, score: number, pointsAwarded: number) => void;
+  onCompleteQuiz: (lesson: Lesson, score: number, pointsAwarded: number, answers?: number[]) => void;
 }
 
 export const LessonQuizModal: React.FC<LessonQuizModalProps> = ({
@@ -41,7 +41,7 @@ export const LessonQuizModal: React.FC<LessonQuizModalProps> = ({
       setQuizScoreResult(res);
       setViewState('result');
       if (res.passed) {
-        onCompleteQuiz(lesson, res.score, lesson.bonusPoints);
+        onCompleteQuiz(lesson, res.score, lesson.bonusPoints, selectedAnswers);
       }
     }
   };

@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
-import { ArrowRight, Globe } from 'lucide-react';
+import { ArrowRight, Globe, Loader2 } from 'lucide-react';
 
 interface WelcomeScreenProps {
   onGetStarted: () => void;
   onExplore: () => void;
+  isLoading?: boolean;
+  authError?: string | null;
 }
 
-export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onGetStarted, onExplore }) => {
+export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
+  onGetStarted,
+  onExplore,
+  isLoading = false,
+  authError = null,
+}) => {
   const [selectedRegion, setSelectedRegion] = useState('India (Active)');
   const [showRegionDropdown, setShowRegionDropdown] = useState(false);
 
@@ -19,7 +26,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onGetStarted, onEx
             type="button"
             onClick={() => setShowRegionDropdown(!showRegionDropdown)}
             className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#EFF3E1] border border-[#DEE5CC] text-[#344437] text-xs font-semibold tracking-wide hover:bg-[#E5EBD0] transition-colors shadow-2xs"
-            aria-label="Brand badge and region menu"
+            aria-label="GRIDSHIELD AI brand badge and region menu"
             aria-expanded={showRegionDropdown}
           >
             {/* Green icon circle */}
@@ -91,29 +98,47 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onGetStarted, onEx
           </p>
         </div>
 
+        {/* Optional Auth Warning Banner */}
+        {authError && (
+          <div className="w-full max-w-[280px] mt-4 p-2.5 rounded-2xl bg-[#FFF0E0] border border-[#F4DEC6] text-[#B85D19] text-xs text-center font-medium leading-relaxed">
+            {authError}
+          </div>
+        )}
+
         {/* Action Buttons */}
-        <div className="w-full mt-7 flex flex-col items-center gap-3">
+        <div className="w-full mt-6 flex flex-col items-center gap-3">
           <button
             type="button"
+            disabled={isLoading}
             onClick={onGetStarted}
-            className="w-full max-w-[280px] py-3.5 px-6 rounded-full bg-[#879B68] hover:bg-[#788C5A] active:scale-[0.98] text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(135,155,104,0.38)] transition-all cursor-pointer"
+            className="w-full max-w-[280px] py-3.5 px-6 rounded-full bg-[#556E40] hover:bg-[#485E36] active:scale-[0.98] disabled:opacity-60 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(85,110,64,0.38)] transition-all cursor-pointer"
           >
-            <span>Get Started</span>
-            <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+            {isLoading ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>Signing In...</span>
+              </>
+            ) : (
+              <>
+                <span>Get Started with Google</span>
+                <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+              </>
+            )}
           </button>
 
           <button
             type="button"
+            disabled={isLoading}
             onClick={onExplore}
-            className="text-xs sm:text-sm font-semibold text-[#344437] hover:text-[#1F2C22] hover:underline transition-colors py-1 cursor-pointer"
+            className="text-xs sm:text-sm font-semibold text-[#344437] hover:text-[#1F2C22] hover:underline transition-colors py-1 cursor-pointer disabled:opacity-50"
           >
-            Explore the App
+            Explore the App (Guest Mode)
           </button>
         </div>
       </main>
 
       {/* Subtle footer */}
-      <footer className="w-full text-center pb-2 text-[10px] text-[#8C9882] tracking-wider uppercase">
+      <footer className="w-full text-center pb-2 text-[10px] text-[#5A6652] tracking-wider uppercase">
         GRIDSHIELD AI • Organic Habit Architecture
       </footer>
     </div>

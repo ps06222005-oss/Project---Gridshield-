@@ -1,0 +1,272 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "GRIDSHIELD AI Backend API",
+    "version": "1.0.0",
+    "description": "Secure, production REST API for GRIDSHIELD AI eco-habit tracking, rewards, quizzes, and community leaderboard."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000/api/v1",
+      "description": "Local development server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "Firebase ID Token",
+        "description": "Official Firebase ID token received after client Google Sign-In"
+      }
+    },
+    "schemas": {
+      "UserProfile": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "firebaseUid": { "type": "string" },
+          "name": { "type": "string" },
+          "location": { "type": "string" },
+          "points": { "type": "number" },
+          "streakDays": { "type": "number" },
+          "lastActiveDate": { "type": "string" },
+          "co2AvoidedKg": { "type": "number" },
+          "energySavedKwh": { "type": "number" },
+          "waterConservedL": { "type": "number" },
+          "plasticBottlesAvoided": { "type": "number" },
+          "treesPlanted": { "type": "number" },
+          "notificationEnabled": { "type": "boolean" },
+          "dailyGoalPoints": { "type": "number", "enum": [25, 50, 75, 100] },
+          "hasOnboarded": { "type": "boolean" },
+          "level": {
+            "type": "object",
+            "properties": {
+              "level": { "type": "number" },
+              "title": { "type": "string" },
+              "currentLevelPoints": { "type": "number" },
+              "nextLevelPoints": { "type": "number" },
+              "progressPercent": { "type": "number" }
+            }
+          }
+        }
+      },
+      "Task": {
+        "type": "object",
+        "properties": {
+          "taskId": { "type": "string" },
+          "title": { "type": "string" },
+          "category": { "type": "string", "enum": ["energy", "water", "waste", "food", "commute", "habits"] },
+          "difficulty": { "type": "string", "enum": ["Easy", "Medium", "Challenging"] },
+          "points": { "type": "number" },
+          "impactLabel": { "type": "string" },
+          "co2SavedKg": { "type": "number" },
+          "energySavedKwh": { "type": "number" },
+          "waterSavedL": { "type": "number" },
+          "durationMinutes": { "type": "number" },
+          "description": { "type": "string" },
+          "whyItMatters": { "type": "string" },
+          "actionSteps": { "type": "array", "items": { "type": "string" } },
+          "isDaily": { "type": "boolean" }
+        }
+      },
+      "Reward": {
+        "type": "object",
+        "properties": {
+          "rewardId": { "type": "string" },
+          "title": { "type": "string" },
+          "organization": { "type": "string" },
+          "costPoints": { "type": "number" },
+          "category": { "type": "string", "enum": ["Tree Planting", "Clean Energy", "Eco Gear", "Water Access"] },
+          "description": { "type": "string" },
+          "impactMetric": { "type": "string" },
+          "imageEmoji": { "type": "string" },
+          "claimedCount": { "type": "number" }
+        }
+      },
+      "Lesson": {
+        "type": "object",
+        "properties": {
+          "lessonId": { "type": "string" },
+          "title": { "type": "string" },
+          "readTimeMinutes": { "type": "number" },
+          "category": { "type": "string" },
+          "summary": { "type": "string" },
+          "keyPoints": { "type": "array", "items": { "type": "string" } },
+          "content": { "type": "array", "items": { "type": "string" } },
+          "quiz": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "question": { "type": "string" },
+                "options": { "type": "array", "items": { "type": "string" } },
+                "explanation": { "type": "string" }
+              }
+            }
+          },
+          "bonusPoints": { "type": "number" },
+          "isCompleted": { "type": "boolean" }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health check",
+        "responses": {
+          "200": { "description": "Backend is running and reports database state" }
+        }
+      }
+    },
+    "/me": {
+      "get": {
+        "summary": "Get authenticated user profile",
+        "security": [{ "BearerAuth": [] }],
+        "responses": {
+          "200": { "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UserProfile" } } } },
+          "401": { "description": "Unauthorized" }
+        }
+      },
+      "patch": {
+        "summary": "Update profile fields",
+        "security": [{ "BearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "location": { "type": "string" },
+                  "hasOnboarded": { "type": "boolean" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Updated profile" },
+          "401": { "description": "Unauthorized" }
+        }
+      },
+      "delete": {
+        "summary": "Delete user account and all private records",
+        "security": [{ "BearerAuth": [] }],
+        "responses": {
+          "204": { "description": "Account deleted successfully" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/tasks": {
+      "get": {
+        "summary": "List active tasks",
+        "parameters": [
+          { "name": "category", "in": "query", "schema": { "type": "string" } },
+          { "name": "difficulty", "in": "query", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "content": { "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Task" } } } } }
+        }
+      }
+    },
+    "/tasks/{taskId}/complete": {
+      "post": {
+        "summary": "Complete a task and earn green points",
+        "security": [{ "BearerAuth": [] }],
+        "parameters": [{ "name": "taskId", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "verificationNote": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Task completion recorded and points awarded" },
+          "409": { "description": "Task already completed today" }
+        }
+      }
+    },
+    "/rewards": {
+      "get": {
+        "summary": "List available eco rewards",
+        "responses": {
+          "200": { "content": { "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Reward" } } } } }
+        }
+      }
+    },
+    "/rewards/{rewardId}/redeem": {
+      "post": {
+        "summary": "Redeem green points for a reward voucher",
+        "security": [{ "BearerAuth": [] }],
+        "parameters": [{ "name": "rewardId", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": { "description": "Voucher generated and points deducted" },
+          "400": { "description": "Insufficient points balance" }
+        }
+      }
+    },
+    "/lessons": {
+      "get": {
+        "summary": "List lessons and modules",
+        "responses": {
+          "200": { "content": { "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Lesson" } } } } }
+        }
+      }
+    },
+    "/lessons/{lessonId}/quiz/submit": {
+      "post": {
+        "summary": "Submit quiz answers for server-side evaluation",
+        "security": [{ "BearerAuth": [] }],
+        "parameters": [{ "name": "lessonId", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["answers"],
+                "properties": {
+                  "answers": { "type": "array", "items": { "type": "integer" } }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Quiz graded with score, explanations, and bonus points" }
+        }
+      }
+    },
+    "/dashboard": {
+      "get": {
+        "summary": "Get user dashboard summary with streak, points, tasks, and recent activity",
+        "security": [{ "BearerAuth": [] }],
+        "responses": {
+          "200": { "description": "Dashboard summary" }
+        }
+      }
+    },
+    "/leaderboard": {
+      "get": {
+        "summary": "Get community leaderboard of real registered users",
+        "security": [{ "BearerAuth": [] }],
+        "parameters": [
+          { "name": "period", "in": "query", "schema": { "type": "string", "enum": ["weekly", "all-time"] } },
+          { "name": "page", "in": "query", "schema": { "type": "integer" } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": { "description": "Rankings of participants" }
+        }
+      }
+    }
+  }
+}
