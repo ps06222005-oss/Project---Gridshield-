@@ -396,7 +396,7 @@ VITE_FIREBASE_APP_ID=your-app-id
 ```env
 PORT=4000
 NODE_ENV=development
-MONGODB_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/gridshield?retryWrites=true&w=majority
+MONGODB_URI=mongodb+srv://<username>:<password>@<cluster-host>/gridshield?retryWrites=true&w=majority
 FRONTEND_ORIGIN=http://localhost:3000
 FIREBASE_PROJECT_ID=gridshield-ai
 RATE_LIMIT_WINDOW_MS=900000

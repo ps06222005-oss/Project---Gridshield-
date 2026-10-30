@@ -1,15 +1,19 @@
 import { initializeApp, getApps, getApp, FirebaseApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, Auth } from 'firebase/auth';
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+/**
+ * Firebase Client SDK Configuration
+ * Environment variables are loaded securely via Vite's `VITE_` prefix convention.
+ * In development or production, define these in a local `.env` file (never committed to Git).
+ */
 const firebaseConfig = {
-  apiKey: "AIzaSyBCQYnOc20ViDbYAD6wMxosmp0riF6Fpao",
-  authDomain: "gridshield-ai.firebaseapp.com",
-  projectId: "gridshield-ai",
-  storageBucket: "gridshield-ai.firebasestorage.app",
-  messagingSenderId: "615667607857",
-  appId: "1:615667607857:web:fc46c4af601e371224a810",
-  measurementId: "G-MQJH6ZZJ41"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || '',
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || 'gridshield-ai.firebaseapp.com',
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || 'gridshield-ai',
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || 'gridshield-ai.firebasestorage.app',
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || '',
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || '',
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || '',
 };
 
 export const app: FirebaseApp = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();

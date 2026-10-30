@@ -69,7 +69,7 @@ cp .env.example .env
 |---|---|---|
 | `PORT` | HTTP server port | `4000` |
 | `NODE_ENV` | Environment mode | `development` / `production` / `test` |
-| `MONGODB_URI` | MongoDB Atlas Connection String | `mongodb+srv://user:pass@cluster.mongodb.net/gridshield?retryWrites=true&w=majority` |
+| `MONGODB_URI` | MongoDB Atlas Connection String | `mongodb+srv://<username>:<password>@<cluster-host>/gridshield?retryWrites=true&w=majority` |
 | `FRONTEND_ORIGIN` | CORS allowlist (comma-separated) | `http://localhost:3000` |
 | `FIREBASE_PROJECT_ID` | Firebase Console Project ID | `gridshield-ai` |
 | `FIREBASE_SERVICE_ACCOUNT_JSON` | Single-line JSON string (local dev only) | `{"type":"service_account",...}` |
